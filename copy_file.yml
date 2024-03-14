@@ -1,0 +1,23 @@
+---
+- name: install and start the docker on ubantu
+  hosts: ubantu
+  become: true
+  tasks:
+    - name: update apt package cache (for ubantu)
+      apt:
+        update_cache: yes
+      when: ansible_distrubution == 'Ubuntu'
+
+    - name: Install Docker
+      package: 
+        name: docker-ce
+        state: present
+      when: ansible_os_family == 'Debian'
+
+    - name: start Docker service
+      service:
+        name: Docker
+        state: started
+
+        
+      

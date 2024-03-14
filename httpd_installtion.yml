@@ -1,0 +1,13 @@
+---
+- name: installation of httpd on linux and ubantu
+  hosts: linux
+  become: true
+  tasks:
+  - name: httpd installation on linux
+    dnf: 
+      name: httpd
+      state: installed
+  - name: httpd installation on ubantu
+    apt:
+      name: httpd
+      state: installed

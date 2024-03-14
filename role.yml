@@ -1,0 +1,6 @@
+---
+- name: create a role
+  hosts: all
+  become: true
+  roles:
+    - apache_setup

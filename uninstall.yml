@@ -1,0 +1,28 @@
+---
+- name: uninstall the httpd on all server
+  hosts: all
+  become: true
+  tasks:
+    - name: stoping httpd on linux
+      service: 
+        name: httpd
+        state: stopped
+      when: ansible_os_family == "RedHat"
+
+    - name: uninstall the httpd on linux
+      yum:
+        state: removed
+      when: ansible_os_family == "RedHat"
+
+    - name: stoping apache2 on ubuntu
+      service: 
+        name: apache2
+        state: stopped
+      when: ansible_os_family == "Debian"
+
+    - name: uninstall the apache2 on ubuntu
+      apt:
+        state: absent
+      when: ansible_os_family == "Debian"
+
+

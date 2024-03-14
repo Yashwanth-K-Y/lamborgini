@@ -1,0 +1,21 @@
+---
+- name: package installation
+  hosts: linux
+  become: true
+  tasks:
+  - name: package installing
+    yum:
+      name: "{{ item }}"
+      state: installed
+    with_items:
+      - git
+      - make
+      - wget
+      - gzip
+      - docker
+  - name: starting of docker
+    service:
+      name: docker 
+      state: started
+
+  
