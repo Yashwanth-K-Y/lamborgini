@@ -15,7 +15,7 @@ resource "aws_instance" "db" {
 resource "aws_instance" "web" {
     ami = "ami-0cf10cdf9fcd62d37"
     instance_type = "t2.micro"
-    security_groups = "aws_security_group.web_traffic.name"
+    security_groups = [aws_security_group.web_traffic.name]
     user_data = file("server-script.sh")
     tags = {
       Name = "Web-Server"
@@ -23,7 +23,7 @@ resource "aws_instance" "web" {
 }
 
 resource "aws_eip" "web_ip" {
-    instance = "aws_instance.web.id"  
+    instance = aws_instance.web.id  
 }
 
 variable "ingress" {
