@@ -1,1 +1,2 @@
+this line added by terminal
 echo "this is to just check"
